@@ -1,13 +1,13 @@
-﻿import streamlit as st
+import streamlit as st
 from sqlmodel import Session, create_engine, select, or_
 from models import Todo
 
 # Database Setup
-sqlite_url = "sqlite:///database.db"
+sqlite_url = "sqlite:///todo_v2.db"
 engine = create_engine(sqlite_url)
 
 st.set_page_config(page_title="GIAIC AI Todo Evolution", layout="wide")
-st.title("🚀 Agentic Todo System - Phase 2")
+st.title("?? Agentic Todo System - Phase 2")
 
 # Sidebar for adding tasks
 with st.sidebar:
@@ -26,7 +26,7 @@ with st.sidebar:
 # Main Screen - List and Filter
 col1, col2 = st.columns(2)
 with col1:
-    search = st.text_input("🔍 Search Tasks")
+    search = st.text_input("?? Search Tasks")
 with col2:
     filter_prio = st.multiselect("Filter by Priority", ["High", "Medium", "Low"])
 
@@ -40,6 +40,6 @@ with Session(engine) as session:
     results = session.exec(statement).all()
     
     for todo in results:
-        with st.expander(f"{'✅' if todo.is_completed else '⏳'} {todo.title} - [{todo.priority}]"):
+        with st.expander(f"{'?' if todo.is_completed else '?'} {todo.title} - [{todo.priority}]"):
             st.write(f"**Category:** {todo.category}")
             st.write(f"**Description:** {todo.description}")
