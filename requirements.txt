@@ -1,0 +1,5 @@
+﻿typer
+sqlmodel
+rich
+streamlit
+psycopg2-binary
