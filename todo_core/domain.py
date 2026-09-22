@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 @dataclass
@@ -8,7 +8,7 @@ class TodoItem:
     priority: str = "Medium"
     category: str = "General"
     completed: bool = False
-    created_at: datetime = datetime.now(timezone.utc)
+    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
     def __post_init__(self):
         self.title = self.title.strip()
