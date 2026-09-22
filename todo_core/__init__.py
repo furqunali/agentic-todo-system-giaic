@@ -14,3 +14,5 @@ __all__ = [
     "validate_title",
     "workload_summary",
 ]
+
+from .reporting import status_report
