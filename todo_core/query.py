@@ -3,7 +3,8 @@ from .domain import TodoItem
 
 def search(items: Iterable[TodoItem], text: str) -> list[TodoItem]:
     needle = str(text).strip().casefold()
-    if not needle: return []
+    if not needle:
+        return []
     return [i for i in items if needle in i.title.casefold() or needle in i.description.casefold()]
 
 def by_category(items: Iterable[TodoItem], category: str) -> list[TodoItem]:
@@ -12,7 +13,8 @@ def by_category(items: Iterable[TodoItem], category: str) -> list[TodoItem]:
 
 def ranked_search(items: Iterable[TodoItem], text: str) -> list[TodoItem]:
     needle = str(text).strip().casefold()
-    if not needle: return []
+    if not needle:
+        return []
     priority_rank = {"High": 0, "Medium": 1, "Low": 2}
     matches = []
     for item in items:
