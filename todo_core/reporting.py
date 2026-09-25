@@ -10,9 +10,18 @@ def status_report(items: Iterable[TodoItem]) -> dict[str, int]:
     return {"total": pending + completed, "pending": pending, "completed": completed}
 
 def category_report(items: Iterable[TodoItem]) -> dict[str, int]:
-    """Count tasks by normalized category in deterministic order."""
+    """Count tasks by normalized category, merging case/whitespace variants."""
     counts: dict[str, int] = {}
     for item in items:
         category = item.category.strip() or "General"
-        counts[category] = counts.get(category, 0) + 1
-    return dict(sorted(counts.items(), key=lambda pair: pair[0].casefold()))
+        normalized = category.casefold()
+        counts[normalized] = counts.get(normalized, 0) + 1
+    return dict(sorted(counts.items()))
+
+def priority_report(items: Iterable[TodoItem]) -> dict[str, int]:
+    """Count tasks by canonical priority, including completed items."""
+    counts = {"High": 0, "Medium": 0, "Low": 0, "Other": 0}
+    for item in items:
+        priority = item.priority.title()
+        counts[priority if priority in {"High", "Medium", "Low"} else "Other"] += 1
+    return counts
