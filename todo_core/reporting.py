@@ -28,8 +28,10 @@ def priority_report(items: Iterable[TodoItem]) -> dict[str, int]:
 
 def priority_report(items: Iterable[TodoItem]) -> dict[str, int]:
     """Count tasks by supported priority in a stable key order."""
-    counts = {"High": 0, "Medium": 0, "Low": 0}
+    counts = {"High": 0, "Medium": 0, "Low": 0, "Other": 0}
     for item in items:
-        if item.priority in counts:
+        if item.priority in {"High", "Medium", "Low"}:
             counts[item.priority] += 1
+        else:
+            counts["Other"] += 1
     return counts
