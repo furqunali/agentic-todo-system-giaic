@@ -24,6 +24,10 @@ def ranked_search(items: Iterable[TodoItem], text: str) -> list[TodoItem]:
     matches.sort(key=lambda value: value[:-1])
     return [value[-1] for value in matches]
 
+def completed_search(items: Iterable[TodoItem], text: str) -> list[TodoItem]:
+    """Search only completed tasks while preserving relevance ranking."""
+    return [item for item in ranked_search(items, text) if item.completed]
+
 def pending_search(items: Iterable[TodoItem], text: str) -> list[TodoItem]:
     """Search only incomplete tasks while preserving relevance ranking."""
     return [item for item in ranked_search(items, text) if not item.completed]
