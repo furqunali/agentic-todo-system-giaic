@@ -22,3 +22,10 @@ class TodoRepository:
 
     def get(self, title: str) -> TodoItem | None:
         return self._items.get(title.strip().casefold())
+
+    def remove(self, title: str) -> TodoItem | None:
+        """Remove a task by case-insensitive title and return it if found."""
+        key = str(title).strip().casefold()
+        if not key:
+            return None
+        return self._items.pop(key, None)
