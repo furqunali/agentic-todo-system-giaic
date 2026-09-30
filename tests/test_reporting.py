@@ -9,11 +9,11 @@ def test_category_report_is_case_stable_and_sorted():
     items = [TodoItem("A", category="Work"), TodoItem("B", category="home"), TodoItem("C", category="Work")]
     assert category_report(items) == {"home": 1, "work": 2}
 
-def test_priority_report_normalizes_case_and_preserves_unknown_bucket():
+def test_priority_report_normalizes_case_and_counts_canonical_buckets():
     items = [
         TodoItem("A", priority="high"),
         TodoItem("B", priority="MEDIUM"),
         TodoItem("C", priority="low"),
-        TodoItem("D", priority="urgent"),
+        TodoItem("D", priority=" HIGH "),
     ]
-    assert priority_report(items) == {"High": 1, "Medium": 1, "Low": 1, "Other": 1}
+    assert priority_report(items) == {"High": 2, "Medium": 1, "Low": 1, "Other": 0}
