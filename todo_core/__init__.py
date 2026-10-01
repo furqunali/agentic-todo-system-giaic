@@ -3,7 +3,7 @@
 from .domain import TodoItem
 from .filters import by_priority, pending, prioritize
 from .query import by_category, ranked_search, search
-from .reporting import status_report
+from .reporting import category_report, priority_report, status_report
 from .validation import validate_priority, validate_title
 from .workload import workload_summary
 
@@ -15,6 +15,8 @@ __all__ = [
     "by_category",
     "search",
     "ranked_search",
+    "category_report",
+    "priority_report",
     "status_report",
     "validate_priority",
     "validate_title",

@@ -17,3 +17,9 @@ def test_priority_report_normalizes_case():
         TodoItem("D", priority="HIGH"),
     ]
     assert priority_report(items) == {"High": 2, "Medium": 1, "Low": 1, "Other": 0}
+
+
+def test_reporting_helpers_are_available_from_package_root():
+    from todo_core import category_report as root_category_report, priority_report as root_priority_report
+    assert root_category_report is category_report
+    assert root_priority_report is priority_report
