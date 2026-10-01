@@ -2,6 +2,7 @@
 
 from .domain import TodoItem
 from .filters import by_priority, pending, prioritize
+from .persistence import todo_from_dict, todo_to_dict
 from .query import by_category, completed_search, filter_tasks, pending_search, ranked_search, search
 from .reporting import category_report, priority_report, status_report
 from .validation import validate_priority, validate_title
@@ -24,4 +25,6 @@ __all__ = [
     "validate_priority",
     "validate_title",
     "workload_summary",
+    "todo_to_dict",
+    "todo_from_dict",
 ]
