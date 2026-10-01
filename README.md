@@ -29,16 +29,25 @@ pytest
 
 - `app.py` — Flask application entry point and routes
 - `main.py` — application bootstrap
-- `todo_core/` — reusable domain, validation, filtering, prioritization, and workload logic
+- `todo_core/` — reusable domain, validation, filtering, prioritization, persistence, and workload logic
 - `specs/` — feature specifications
 - SQLite — local persistence
 
 ## Public API
 
-Supported domain functions are exported from `todo_core`, so the core can be reused independently of Flask.
+The `todo_core` package is usable independently of Flask. It exposes:
+
+- task creation and validation through `TodoItem`
+- search and multi-criteria filtering
+- category, priority, and status reports
+- prioritization and workload summaries
+- validated dictionary snapshots through `todo_to_dict` / `todo_from_dict`
+
+This separation keeps business rules testable and makes the domain layer reusable by future CLI, API, or agent interfaces.
 
 ## Roadmap
 
 - Natural-language task entry
 - Agent-driven prioritisation and daily summaries
 - Authentication and multi-user support
+- HTTP API for external clients
